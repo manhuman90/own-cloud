@@ -1,0 +1,1 @@
+{"app":"PHP","message":"touch(): Unable to create file C:\/xamppp\/htdocs\/owncloud\/data\/owncloud.log because No such file or directory at C:\\xamppp\\htdocs\\owncloud\\lib\\private\\log\\owncloud.php#49","level":3,"time":"2022-11-11T01:09:39+00:00"}

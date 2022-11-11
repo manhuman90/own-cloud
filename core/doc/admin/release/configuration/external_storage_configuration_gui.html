@@ -1,0 +1,561 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring External Storage (GUI) &mdash; ownCloud 7 Server Administration Manual 7.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '7.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap.js"></script>
+    <link rel="top" title="ownCloud 7 Server Administration Manual 7.0 documentation" href="../contents.html" />
+    <link rel="up" title="Configuration" href="index.html" />
+    <link rel="next" title="Configuring External Storage (Configuration File)" href="external_storage_configuration.html" />
+    <link rel="prev" title="Encryption Configuration" href="encryption_configuration.html" />
+<script type="text/javascript">
+(function () {
+  /**
+   * Patch TOC list.
+   *
+   * Will mutate the underlying span to have a correct ul for nav.
+   *
+   * @param $span: Span containing nested UL's to mutate.
+   * @param minLevel: Starting level for nested lists. (1: global, 2: local).
+   */
+  var patchToc = function ($ul, minLevel) {
+    var findA;
+
+    // Find all a "internal" tags, traversing recursively.
+    findA = function ($elem, level) {
+      var level = level || 0,
+        $items = $elem.find("> li > a.internal, > ul, > li > ul");
+
+      // Iterate everything in order.
+      $items.each(function (index, item) {
+        var $item = $(item),
+          tag = item.tagName.toLowerCase(),
+          pad = 15 + ((level - minLevel) * 10);
+
+        if (tag === 'a' && level >= minLevel) {
+          // Add to existing padding.
+          $item.css('padding-left', pad + "px");
+          console.log(level, $item, 'padding-left', pad + "px");
+        } else if (tag === 'ul') {
+          // Recurse.
+          findA($item, level + 1);
+        }
+      });
+    };
+
+    console.log("HERE");
+    findA($ul);
+  };
+
+  $(document).ready(function () {
+    // Add styling, structure to TOC's.
+    $(".dropdown-menu").each(function () {
+      $(this).find("ul").each(function (index, item){
+        var $item = $(item);
+        $item.addClass('unstyled');
+      });
+      $(this).find("li").each(function () {
+        $(this).parent().append(this);
+      });
+    });
+
+    // Patch in level.
+    patchToc($("ul.globaltoc"), 2);
+    patchToc($("ul.localtoc"), 2);
+
+    // Enable dropdown.
+    $('.dropdown-toggle').dropdown();
+  });
+}());
+</script>
+
+  </head>
+  <body role="document">
+  
+
+<div class="container">
+  <div class="content">
+    <div class="page-header">
+      <h1><a href="../contents.html">ownCloud 7 Server Administration Manual</a></h1>
+
+    </div>
+    
+			<div class="row">
+				<div class="span3">
+					<div class="sidebar">
+						<div class="well">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../videos.html">ownCloud Videos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new_admin.html">What&#8217;s New for Admins in ownCloud 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">ownCloud 7.0 Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="activity_configuration.html">Configuring the Activity App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="antivirus_configuration.html">Configuring the ClamAV Antivirus Scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automatic_configuration.html">Automatic Configuration Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="background_jobs_configuration.html">Defining Background Jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="big_file_upload_configuration.html">Uploading big files &gt; 512MB (as set by default)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collaborative_documents_configuration.html">Configuring the Collaborative Documents App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_sample_php_parameters.html">Config.php Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="custom_client_configuration.html">Custom Client Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="database_configuration.html">Database Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_configuration.html">Email Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption_configuration.html">Encryption Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Configuring External Storage (GUI)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#supported-mounts">Supported mounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enabling-external-storage-support">Enabling External Storage Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-self-signed-certificates">Using self-signed certificates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-files-to-external-storages">Adding files to external storages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-storage">Local Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-s3">Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dropbox">Dropbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ftp-ftps-sftp">FTP/FTPS/SFTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-drive">Google Drive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smb-cifs">SMB/CIFS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smb-cifs-using-oc-login">SMB/CIFS using OC login</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#owncloud-and-webdav">ownCloud and WebDAV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openstack-object-storage">OpenStack Object Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="external_storage_configuration.html">Configuring External Storage (Configuration File)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_sites.html">Linking External Sites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_sharing_configuration.html">File Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files_locking_enabling.html">Files Locking App Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="harden_server.html">Hardening and Security Guidance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="js_css_asset_management_configuration.html">JavaScript and CSS Asset Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="knowledgebase_configuration.html">Knowledge Base Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_configuration.html">Language Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging_configuration.html">Logging Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="occ_command.html">Using the occ Command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance_tips.html">Performance Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previews_configuration.html">Previews Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reverse_proxy_configuration.html">Reverse Proxy Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_configuration.html">Enabling Full-Text Search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="server_to_server_configuration.html">Configuring Server-to-Server Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="serving_static_files_configuration.html">Serving Static Files for Better Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="thirdparty_php_configuration.html">Using Third Party PHP Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_auth_ftp_smb_imap.html">User Authentication with IMAP, SMB, and FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_auth_ldap.html">User Authentication with LDAP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_auth_ldap_cleanup.html">LDAP User Cleanup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_configuration.html">User Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset_admin_password.html">Resetting a Lost Admin Password</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+        
+
+				<div class="span9">
+					<div class="page-content">
+						
+  <div class="section" id="configuring-external-storage-gui">
+<h1>Configuring External Storage (GUI)<a class="headerlink" href="#configuring-external-storage-gui" title="Permalink to this headline">¶</a></h1>
+<p>The External Storage Support application enables you to mount external storage services
+and devices as secondary ownCloud storage devices. You may also allow users to
+mount their own external storage services.</p>
+<p>All of these connect to a LAN ownCloud server that is not publicly accessible,
+with one exception: Google Drive requires an ownCloud server with a registered
+domain name that is accessible over the Internet.</p>
+<div class="section" id="supported-mounts">
+<h2>Supported mounts<a class="headerlink" href="#supported-mounts" title="Permalink to this headline">¶</a></h2>
+<p>ownCloud admins may mount these external storage services and devices:</p>
+<ul class="simple">
+<li>Local</li>
+<li>Amazon S3 and S3 compliant</li>
+<li>Dropbox</li>
+<li>FTP/SFTP</li>
+<li>Google Drive</li>
+<li>OpenStack Object Storage</li>
+<li>SMB/CIFS</li>
+<li>SMB/CIFS using OC login</li>
+<li>ownCloud</li>
+<li>WebDAV</li>
+</ul>
+<p>ownCloud users can be given permission to mount any of these, except local
+storage.</p>
+<p>To understand how ownCloud manages passwords for external mounts, and the
+security implications, see the <strong>External Storage Password Management</strong> section
+of <a class="reference internal" href="external_storage_configuration.html"><em>Configuring External Storage (Configuration File)</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A non-blocking or correctly configured SELinux setup is needed
+for these backends to work. Please refer to the <a class="reference internal" href="../installation/selinux_configuration.html#selinux-config-label"><span>SELinux Configuration</span></a>.</p>
+</div>
+</div>
+<div class="section" id="enabling-external-storage-support">
+<h2>Enabling External Storage Support<a class="headerlink" href="#enabling-external-storage-support" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">External</span> <span class="pre">storage</span> <span class="pre">support</span></code> application is enabled on the <code class="docutils literal"><span class="pre">Apps</span></code> page.</p>
+<div class="figure">
+<img alt="../_images/external-storage-app-enable.png" src="../_images/external-storage-app-enable.png" />
+</div>
+<p>After enabling it, go to your <code class="docutils literal"><span class="pre">Admin</span></code> page to set up your external
+storage mounts.</p>
+<div class="figure">
+<img alt="../_images/external-storage-app-add.png" src="../_images/external-storage-app-add.png" />
+</div>
+<p>When your configuration is correct you&#8217;ll see a green light at the left, and if
+it isn&#8217;t you&#8217;ll see a red light.</p>
+<p>Check <code class="docutils literal"><span class="pre">Enable</span> <span class="pre">User</span> <span class="pre">External</span> <span class="pre">Storage</span></code> to allow your users to mount their own
+external storage services, and check the services you want to allow.</p>
+<div class="figure">
+<img alt="../_images/external-storage-app-usermounts.png" src="../_images/external-storage-app-usermounts.png" />
+</div>
+<p>After creating your external storage mounts, you can share them and control
+permissions just like any other ownCloud share.</p>
+</div>
+<div class="section" id="using-self-signed-certificates">
+<h2>Using self-signed certificates<a class="headerlink" href="#using-self-signed-certificates" title="Permalink to this headline">¶</a></h2>
+<p>When using self-signed certificates for external storage mounts the certificate
+needs to be imported in the personal settings of the user. Please refer to <a class="reference external" href="http://ownclouden.blogspot.de/2014/11/owncloud-https-external-mount.html">this</a>
+blogpost for more informations.</p>
+</div>
+<div class="section" id="adding-files-to-external-storages">
+<h2>Adding files to external storages<a class="headerlink" href="#adding-files-to-external-storages" title="Permalink to this headline">¶</a></h2>
+<p>In general it is recommended to configure the background job <code class="docutils literal"><span class="pre">Webcron</span></code> or
+<code class="docutils literal"><span class="pre">Cron</span></code> as described in <a class="reference internal" href="background_jobs_configuration.html"><em>Defining Background Jobs</em></a>
+so ownCloud is able to detect files added to your external storages without the need
+that a users is browsing your ownCloud installation.</p>
+<p>Please also be aware that ownCloud might not always be able to find out what has been
+changed remotely (files changes without going through ownCloud), especially
+when it&#8217;s very deep in the folder hierarchy of the external storage.</p>
+<p>You might need to setup a cron job that runs <code class="docutils literal"><span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">www-data</span> <span class="pre">php</span> <span class="pre">occ</span> <span class="pre">files:scan</span> <span class="pre">--all</span></code>
+(or replace &#8220;&#8211;all&#8221; with the user name, see also <a class="reference internal" href="occ_command.html"><em>Using the occ Command</em></a>)
+to trigger a rescan of the user&#8217;s files periodically (for example every 15 minutes), which includes
+the mounted external storage.</p>
+</div>
+<div class="section" id="local-storage">
+<h2>Local Storage<a class="headerlink" href="#local-storage" title="Permalink to this headline">¶</a></h2>
+<p>Use this to mount any directory on your ownCloud server that is outside of your
+ownCloud <code class="docutils literal"><span class="pre">data/</span></code> directory. This directory must be readable and writable by
+your HTTP server user.</p>
+<p>In the <code class="docutils literal"><span class="pre">Folder</span> <span class="pre">name</span></code> field enter the folder name that you want to appear on
+your ownCloud <code class="docutils literal"><span class="pre">Files</span></code> page.</p>
+<p>In the <code class="docutils literal"><span class="pre">Configuration</span></code> field enter the full filepath of the directory you
+want to mount.</p>
+<p>In the <code class="docutils literal"><span class="pre">Available</span> <span class="pre">for</span></code> field enter the users or groups who have permission to
+access the mount.</p>
+<div class="figure">
+<img alt="../_images/external-storage-app-local.png" src="../_images/external-storage-app-local.png" />
+</div>
+</div>
+<div class="section" id="amazon-s3">
+<h2>Amazon S3<a class="headerlink" href="#amazon-s3" title="Permalink to this headline">¶</a></h2>
+<p>All you need to connect your Amazon S3 buckets to ownCloud is your S3 Access
+Key, Secret Key, and your bucket name.</p>
+<p>In the <code class="docutils literal"><span class="pre">Folder</span> <span class="pre">name</span></code> field enter the folder name that you want to appear on
+your ownCloud <code class="docutils literal"><span class="pre">Files</span></code> page.</p>
+<p>In the <code class="docutils literal"><span class="pre">Access</span> <span class="pre">Key</span></code> field enter your S3 Access Key.</p>
+<p>In the <code class="docutils literal"><span class="pre">Secret</span> <span class="pre">Key</span></code> field enter your S3 Secret Key.</p>
+<p>In the <code class="docutils literal"><span class="pre">Bucket</span></code> field enter the name of your S3 bucket you want to share.</p>
+<p>In the <code class="docutils literal"><span class="pre">Available</span> <span class="pre">for</span></code> field enter the users or groups who have permission to
+access your S3 mount.</p>
+<p>The hostname, port, and region of your S3 server are optional; you will need
+to use these for non-Amazon S3-compatible servers.</p>
+<div class="figure">
+<img alt="../_images/external-storage-amazons3.png" src="../_images/external-storage-amazons3.png" />
+</div>
+</div>
+<div class="section" id="dropbox">
+<h2>Dropbox<a class="headerlink" href="#dropbox" title="Permalink to this headline">¶</a></h2>
+<p>Connecting Dropbox is a little more work because you have to create a Dropbox
+app. Log into the <a class="reference external" href="http://www.dropbox.com/developers">Dropbox Developers page</a>
+and click <code class="docutils literal"><span class="pre">App</span> <span class="pre">Console</span></code>:</p>
+<div class="figure">
+<img alt="../_images/external-storage-dropbox.png" src="../_images/external-storage-dropbox.png" />
+</div>
+<p>If you have not already created any Dropbox apps it will ask you to accept
+their terms and conditions. Then you are presented with the choice to create
+either a Drop-ins App or a Dropbox API App. Click <code class="docutils literal"><span class="pre">Dropbox</span> <span class="pre">API</span> <span class="pre">App</span></code>, and then
+check:</p>
+<ul class="simple">
+<li>Files and datastores.</li>
+<li>No &#8211; My app needs access to files already on Dropbox.</li>
+<li>All file types &#8211; My app needs access to a user&#8217;s full Dropbox. Only
+supported via the CoreAPI.</li>
+</ul>
+<p>Then enter whatever name you want for your app.</p>
+<div class="figure">
+<img alt="../_images/external-storage-dropbox-app.png" src="../_images/external-storage-dropbox-app.png" />
+</div>
+<p>Now click the <code class="docutils literal"><span class="pre">Create</span> <span class="pre">App</span></code> button. Under <code class="docutils literal"><span class="pre">Status</span></code>, do not click
+<code class="docutils literal"><span class="pre">Development</span> <span class="pre">(Apply</span> <span class="pre">for</span> <span class="pre">production</span> <span class="pre">status)</span></code> because that is for apps that you
+want to release publicly.</p>
+<p>Click <code class="docutils literal"><span class="pre">Enable</span> <span class="pre">additional</span> <span class="pre">users</span></code> to allow multiple oC users to use your new
+Dropbox share.</p>
+<p>Note your App key and App secret, which you will enter in the External Storage
+form on your ownCloud Admin page.</p>
+<div class="figure">
+<img alt="../_images/external-storage-dropbox-configapp.png" src="../_images/external-storage-dropbox-configapp.png" />
+</div>
+<p>Your ownCloud configuration requires only the local mount name, the App Key and
+the App Secret, and which users or groups have access to the share.</p>
+<div class="figure">
+<img alt="../_images/external-storage-dropbox-oc.png" src="../_images/external-storage-dropbox-oc.png" />
+</div>
+<p>You must be logged into Dropbox, and when ownCloud successfully verifies your
+connection Dropbox will ask for verification to connect to your Dropbox
+account. Click <code class="docutils literal"><span class="pre">Allow</span></code>, and you&#8217;re done.</p>
+<div class="figure">
+<img alt="../_images/external-storage-dropbox-allowshare.png" src="../_images/external-storage-dropbox-allowshare.png" />
+</div>
+</div>
+<div class="section" id="ftp-ftps-sftp">
+<h2>FTP/FTPS/SFTP<a class="headerlink" href="#ftp-ftps-sftp" title="Permalink to this headline">¶</a></h2>
+<p>Connecting to an FTP server requires:</p>
+<ul class="simple">
+<li>Whatever name you want for your local mountpoint.</li>
+<li>The URL of your FTP server, and optionally the port number.</li>
+<li>FTP server username and password.</li>
+<li>The FTP directory to mount in ownCloud. ownCloud defaults to the root
+directory. When you specify a different directory you must leave off the
+leading slash. For example, if you want to connect your
+<code class="docutils literal"><span class="pre">public_html/images</span></code> directory, then type it exactly like that.</li>
+<li>Choose whether to connect in the clear with <code class="docutils literal"><span class="pre">ftp://</span></code>, or to encrypt your
+FTP session with SSL/TLS over <code class="docutils literal"><span class="pre">ftps://</span></code> (Your FTP server must be
+configured to support <code class="docutils literal"><span class="pre">ftps://</span></code>)</li>
+<li>Enter the ownCloud users or groups who are allowed to access the share.</li>
+</ul>
+<div class="figure">
+<img alt="../_images/external-storage-ftp.png" src="../_images/external-storage-ftp.png" />
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The external storage <code class="docutils literal"><span class="pre">FTP/FTPS/SFTP</span></code> needs the <code class="docutils literal"><span class="pre">allow_url_fopen</span></code> PHP
+setting to be set to <code class="docutils literal"><span class="pre">1</span></code>. When having connection problems make sure that it is
+not set to <code class="docutils literal"><span class="pre">0</span></code> in your <code class="docutils literal"><span class="pre">php.ini</span></code>.</p>
+</div>
+<p>SFTP uses SSH rather than SSL, as FTPS does, so your SFTP sessions are always
+safely tucked inside an SSH tunnel. To connect an SFTP server you need:</p>
+<ul class="simple">
+<li>Whatever name you want for your local mountpoint.</li>
+<li>The URL of your SFTP server.</li>
+<li>SFTP server username and password.</li>
+<li>The SFTP directory to mount in ownCloud.</li>
+<li>The ownCloud users or groups who are allowed to access the share.</li>
+</ul>
+</div>
+<div class="section" id="google-drive">
+<h2>Google Drive<a class="headerlink" href="#google-drive" title="Permalink to this headline">¶</a></h2>
+<p>ownCloud uses OAuth 2.0 to connect to Google Drive. This requires configuration
+through Google to get an app ID and app secret, as ownCloud registers itself
+as an app.</p>
+<p>All applications that access a Google API must be registered through the
+<a class="reference external" href="https://console.developers.google.com/">Google Cloud Console</a>. Follow along
+carefully
+because the Google interface is a bit of a maze and it&#8217;s easy to get lost.</p>
+<p>If you already have a Google account, such as Groups, Drive, or Mail, you can
+use your existing login to log into the Google Cloud Console. After logging in
+click  the <strong>Create Project</strong> button.</p>
+<div class="figure">
+<img alt="Google Drive app &quot;create project&quot; screen" src="../_images/google-drive.png" />
+</div>
+<p>Give your project a name, and either accept the default <strong>Project ID</strong> or
+create
+your own, then click the <strong>Create</strong> button.</p>
+<div class="figure">
+<img alt="New project creation screen." src="../_images/google-drive1.png" />
+</div>
+<p>You&#8217;ll be returned to your dashboard.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="../_images/google-drive2.png"><img alt="Project dashboard, with all project options." src="../_images/google-drive2.png" style="width: 483.75px; height: 307.5px;" /></a>
+</div>
+<p>Google helpfully highlights your next step in blue, the <strong>Use Google APIs</strong>
+box. Make sure that your new project is selected, click on <strong>Use Google APIs</strong>
+,
+and it takes you to Google&#8217;s APIs screen. There are many Google APIs; look for
+the <strong>Google Apps APIs</strong> and click <strong>Drive API.</strong></p>
+<div class="figure">
+<img alt="Drive API link." src="../_images/google-drive3.png" />
+</div>
+<p><strong>Drive API</strong> takes you to the API Manager overview. Click the blue <strong>Enable
+API</strong> button.</p>
+<p>Now you must create your credentials, so click on <strong>Go to credentials</strong>.</p>
+<div class="figure">
+<img alt="Create Client ID screen." src="../_images/google-drive5.png" />
+</div>
+<p>For some reason Google warns us again that we need to create credentials. We
+will use 0Auth 2.0.</p>
+<div class="figure">
+<img alt="Another warning to create credentials." src="../_images/google-drive6.png" />
+</div>
+<p>Now we have to create a consent screen. This is the information in the screen
+Google shows you when you connect your new Google app to ownCloud the first
+time. Click <strong>Configure consent screen</strong>. Then fill in the required form
+fields.
+Your logo must be hosted, as you cannot upload it, so enter its URL. When
+you&#8217;re finished click <strong>Save</strong>.</p>
+<div class="figure">
+<img alt="Creating the consent screen." src="../_images/google-drive8.png" />
+</div>
+<p>The next screen that opens is <strong>Create Client ID</strong>. Check <strong>Web Application</strong>,
+then enter your app name. <strong>Authorized JavaScript Origins</strong> is your root
+domain,
+for example <code class="docutils literal"><span class="pre">https://www.example.com</span></code>, without a trailing slash. You need two
+<strong>Authorized Redirect URIs</strong>, and they must be in this form:</p>
+<div class="highlight-python"><div class="highlight"><pre>https://example.com/owncloud/index.php/settings/personal
+https://example.com/owncloud/index.php/settings/admin
+</pre></div>
+</div>
+<p>Replace <code class="docutils literal"><span class="pre">https://example.com/owncloud/</span></code> with your own ownCloud server URL,
+then click <strong>Create</strong>.</p>
+<div class="figure">
+<img alt="Creating client credentials." src="../_images/google-drive9.png" />
+</div>
+<p>Now Google reveals to you your <strong>Client ID</strong> and <strong>Client Secret</strong>. Click
+<strong>OK</strong>.</p>
+<div class="figure">
+<img alt="Client ID and client secret." src="../_images/google-drive10.png" />
+</div>
+<p>You can see these anytime in your Google console; just click on your app name
+to see complete information.</p>
+<div class="figure">
+<img alt="Client ID and client secret" src="../_images/google-drive11.png" />
+</div>
+<p>Now you have everything you need to mount your Google Drive in ownCloud.</p>
+<p>Go to the External Storage section of your Admin page, create your new folder
+name, enter the Client ID and Client Secret, and click <strong>Grant Access</strong>. Your
+consent page appears when ownCloud makes a successful connection. Click
+<strong>Allow</strong>.</p>
+<div class="figure">
+<img alt="Google Drive consent page." src="../_images/google-drive12.png" />
+</div>
+<p>When you see the green light confirming a successful connection
+you&#8217;re finished.</p>
+<div class="figure">
+<img alt="Google Drive mount in ownCloud." src="../_images/google-drive13.png" />
+</div>
+</div>
+<div class="section" id="smb-cifs">
+<h2>SMB/CIFS<a class="headerlink" href="#smb-cifs" title="Permalink to this headline">¶</a></h2>
+<p>You can mount SMB/CIFS file shares on ownCloud servers that run on Linux. This
+only works on Linux ownCloud servers because you must have <code class="docutils literal"><span class="pre">smbclient</span></code>
+installed. SMB/CIFS file servers include any Windows file share, Samba servers
+on Linux and other Unix-type operating systems, and NAS appliances.</p>
+<p>You need the following information:</p>
+<ul class="simple">
+<li>Folder name &#8211; Whatever name you want for your local mountpoint.</li>
+<li>Host &#8211; The URL of the Samba server.</li>
+<li>Username &#8211; The username or domain/username used to login to the Samba server.</li>
+<li>Password &#8211; The password to login to the Samba server.</li>
+<li>Share &#8211; The share on the Samba server to mount.</li>
+<li>Root &#8211; The folder inside the Samba share to mount (optional, defaults to ‘/’). To assign the ownCloud logon username automatically to the subfolder, use <code class="docutils literal"><span class="pre">$user</span></code> instead of a particular subfolder name.</li>
+</ul>
+<p>And finally, the ownCloud users and groups who get access to the share.</p>
+<div class="figure">
+<img alt="../_images/external-storage-smb.png" src="../_images/external-storage-smb.png" />
+</div>
+</div>
+<div class="section" id="smb-cifs-using-oc-login">
+<h2>SMB/CIFS using OC login<a class="headerlink" href="#smb-cifs-using-oc-login" title="Permalink to this headline">¶</a></h2>
+<p>This works the same way as setting up a SMB/CIFS mount, except you can use your
+ownCloud logins intead of the SMB/CIFS server logins. To make this work, your
+ownCloud users need the same login and password as on the SMB/CIFS server.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Shares set up with <code class="docutils literal"><span class="pre">SMB/CIFS</span> <span class="pre">using</span> <span class="pre">OC</span> <span class="pre">login</span></code> cannot be shared in
+ownCloud. If you need to share your SMB/CIFS mount, then use the SMB/CIFS
+mount without oC login.</p>
+</div>
+</div>
+<div class="section" id="owncloud-and-webdav">
+<h2>ownCloud and WebDAV<a class="headerlink" href="#owncloud-and-webdav" title="Permalink to this headline">¶</a></h2>
+<p>Use these to mount a directory from any WebDAV server, or another
+ownCloud server.</p>
+<ul class="simple">
+<li>Folder name &#8211; Whatever name you want for your local mountpoint.</li>
+<li>URL &#8211; The URL of the WebDAV or ownCloud server.</li>
+<li>Username and password for the remote server</li>
+<li>Root &#8211; The remote folder you want to mount (optional, defaults
+to <code class="docutils literal"><span class="pre">/</span></code>)</li>
+<li>Secure <code class="docutils literal"><span class="pre">https://</span></code> - Whether to use <code class="docutils literal"><span class="pre">https://</span></code> to connect to the WebDav
+server instead of <code class="docutils literal"><span class="pre">http://</span></code> (We always recommend <code class="docutils literal"><span class="pre">https://</span></code> for
+security)</li>
+</ul>
+<div class="figure">
+<img alt="../_images/external-storage-webdav.png" src="../_images/external-storage-webdav.png" />
+</div>
+</div>
+<div class="section" id="openstack-object-storage">
+<h2>OpenStack Object Storage<a class="headerlink" href="#openstack-object-storage" title="Permalink to this headline">¶</a></h2>
+<p>Use this to mount a container on an OpenStack Object Storage server. You need
+the following information:</p>
+<ul class="simple">
+<li>Username</li>
+<li>Bucket</li>
+<li>Region</li>
+<li>API Key</li>
+<li>Tenantname</li>
+<li>Password</li>
+<li>Service Name</li>
+<li>URL of identity Endpoint</li>
+<li>Timeout of HTTP request</li>
+</ul>
+</div>
+<div class="section" id="configuration-file">
+<h2>Configuration File<a class="headerlink" href="#configuration-file" title="Permalink to this headline">¶</a></h2>
+<p>The configuration of mounts created within the External Storage App are stored
+in the <code class="docutils literal"><span class="pre">data/mount.json</span></code> file. This file contains all settings in JSON
+(JavaScript Object Notation) format. Two different types of entries exist:</p>
+<ul class="simple">
+<li>Group mounts: Each entry configures a mount for each user in group.</li>
+<li>User mount: Each entry configures a mount for a single user or all users.</li>
+</ul>
+<p>For each type, there is a JSON array with the user/group name as key and an
+array of configuration values as the value. Each entry consist of the class name
+of the storage backend and an array of backend specific options (described
+above) and will be replaced by the user login.</p>
+<p>Although configuration may be done by making modifications to the
+<code class="docutils literal"><span class="pre">mount.json</span></code> file, it is recommended to use the Web-GUI in the administrator
+panel (as described in the above section) to add, remove, or modify mount
+options to prevent any problems. See <a class="reference internal" href="external_storage_configuration.html"><em>Configuring External Storage (Configuration File)</em></a> for
+configuration examples.</p>
+</div>
+</div>
+
+
+					</div>
+				</div>
+			</div>
+    
+  </div>
+</div>
+  </body>
+</html>
